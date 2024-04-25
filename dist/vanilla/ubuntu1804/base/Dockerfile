@@ -1,7 +1,7 @@
 ARG BASE_IMAGE=ubuntu:18.04
 
 FROM ${BASE_IMAGE}
-LABEL maintainer="Yusu Pan <xxdsox@gmail.com>"
+LABEL maintainer="Pantao Yao <pantaoyao@gmail.com>"
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8

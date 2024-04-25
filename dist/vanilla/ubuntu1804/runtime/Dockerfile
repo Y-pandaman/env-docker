@@ -1,7 +1,7 @@
 ARG IMAGE_NAME
 FROM ${IMAGE_NAME}:vanilla-base-ubuntu18.04
 
-LABEL maintainer="Yusu Pan <xxdsox@gmail.com>"
+LABEL maintainer="Pantao Yao <pantaoyao@gmail.com>"
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \

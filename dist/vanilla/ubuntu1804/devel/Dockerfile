@@ -1,7 +1,7 @@
 ARG IMAGE_NAME
 FROM ${IMAGE_NAME}:vanilla-runtime-ubuntu18.04
 
-LABEL maintainer="Yusu Pan <xxdsox@gmail.com>"
+LABEL maintainer="Pantao Yao <pantaoyao@gmail.com>"
 
 # Setup SSH
 COPY deps/setup_ssh.sh /tmp/

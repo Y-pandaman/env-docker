@@ -24,7 +24,7 @@ ARG BASE_PACKAGE
 ARG BASE_PACKAGE_VERSION
 ARG OS_VERSION
 
-LABEL maintainer="Yusu Pan <xxdsox@gmail.com>"
+LABEL maintainer="Pantao Yao <pantaoyao@gmail.com>"
 
 # Install TensorRT
 COPY deps/install_tensorrt.sh /tmp/

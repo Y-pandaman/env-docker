@@ -2,7 +2,7 @@ ARG PACKAGE_VERSION=11.2.0
 ARG OS_VERSION=ubuntu18.04
 FROM nvidia/cuda:${PACKAGE_VERSION}-runtime-${OS_VERSION}
 
-LABEL maintainer="Yusu Pan <xxdsox@gmail.com>"
+LABEL maintainer="Pantao Yao <pantaoyao@gmail.com>"
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
