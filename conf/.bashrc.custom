@@ -1,0 +1,26 @@
+# Path
+export CUDA_HOME=/usr/local/cuda
+export PATH="${HOME/.local/bin}:${PATH}:$CUDA_HOME/bin"
+export LD_LIBRARY_PATH="/usr/local/lib:/usr/lib:${LD_LIBRARY_PATH}:/usr/local/cuda/lib64:/usr/local/cuda/extras/CUPTI/lib64"
+
+# ROS
+export ROSCONSOLE_FORMAT='[${severity}][${time}][${node}:${logger}]: ${message}'
+alias rcd='roscd'
+alias e='rosed'
+alias rmk='catkin_make -j8'
+alias rt="catkin_make run_tests"
+alias rcl='catkin_make clean'
+alias rpkg='catkin_create_pkg'
+alias rcore='roscore &'
+alias rl='roslaunch'
+alias rr='rosrun'
+alias rlog="sudo vim ${ROS_ROOT}/config/rosconsole.config"
+
+export ROS_DISTRO="melodic"
+[ -f /opt/ros/${ROS_DISTRO}/setup.bash ] && source /opt/ros/${ROS_DISTRO}/setup.bash
+
+if [ -f /workspace/install/setup.bash ]; then
+   source /workspace/install/setup.bash
+elif [ -f /workspace/devel/setup.bash ]; then
+   source /workspace/devel/setup.bash
+fi
