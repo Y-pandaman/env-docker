@@ -3,6 +3,9 @@ FROM ${IMAGE_NAME}:vanilla-runtime-ubuntu18.04
 
 LABEL maintainer="Pantao Yao <pantaoyao@gmail.com>"
 
+ENV http_proxy http://192.168.20.195:7890
+ENV https_proxy http://192.168.20.195:7890
+
 # Setup SSH
 COPY deps/setup_ssh.sh /tmp/
 RUN /tmp/setup_ssh.sh \
@@ -21,5 +24,8 @@ RUN /tmp/setup_dev_tools.sh \
 # Setup dotfiles
 COPY conf/.zshrc /root/
 COPY conf/.tmux.conf /root/
+
+ENV http_proxy ''
+ENV https_proxy ''
 
 ENTRYPOINT service ssh restart && zsh

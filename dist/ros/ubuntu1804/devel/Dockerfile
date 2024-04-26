@@ -5,6 +5,9 @@ FROM ${IMAGE_NAME}:${BASE_PACKAGE}-devel-${OS_VERSION}
 
 LABEL maintainer="Pantao Yao <pantaoyao@gmail.com>"
 
+ENV http_proxy http://192.168.20.195:7890
+ENV https_proxy http://192.168.20.195:7890
+
 # Install ROS
 ARG PACKAGE_VERSION=melodic
 ARG ROS_METAPACKAGE=desktop-full
@@ -19,3 +22,6 @@ RUN /tmp/install_ros.sh \
 
 # Setup dotfiles
 RUN sed -i "s/melodic/${PACKAGE_VERSION}/g" /root/.bashrc.custom
+
+ENV http_proxy ''
+ENV https_proxy ''

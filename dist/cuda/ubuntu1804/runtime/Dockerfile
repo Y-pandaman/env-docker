@@ -4,6 +4,9 @@ FROM nvidia/cuda:${PACKAGE_VERSION}-runtime-${OS_VERSION}
 
 LABEL maintainer="Pantao Yao <pantaoyao@gmail.com>"
 
+ENV http_proxy http://192.168.20.195:7890
+ENV https_proxy http://192.168.20.195:7890
+
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
 
@@ -64,3 +67,6 @@ RUN echo "source ~/.bashrc.custom" >> "$HOME"/.bashrc
 ENV PATH "${PATH}:/usr/local/bin"
 ENV LD_LIBRARY_PATH "${LD_LIBRARY_PATH}:/usr/local/lib:/usr/lib"
 ENV PYTHONPATH "${PYTHONPATH}:/usr/local/lib/python3.6/site-packages"
+
+ENV http_proxy ''
+ENV https_proxy ''

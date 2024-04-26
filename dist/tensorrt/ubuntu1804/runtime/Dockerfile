@@ -1,6 +1,6 @@
 ARG IMAGE_NAME
-ARG PACKAGE_VERSION=8.4.3.1
-ARG CUDA_VERSION=11.6.2
+ARG PACKAGE_VERSION=8.5.3.1
+ARG CUDA_VERSION=11.8.0
 ARG OS_VERSION=ubuntu18.04
 
 FROM ${IMAGE_NAME}:cuda-${CUDA_VERSION}-devel-${OS_VERSION} as base
@@ -26,6 +26,9 @@ ARG OS_VERSION
 
 LABEL maintainer="Pantao Yao <pantaoyao@gmail.com>"
 
+ENV http_proxy http://192.168.20.195:7890
+ENV https_proxy http://192.168.20.195:7890
+
 # Install TensorRT
 COPY deps/install_tensorrt.sh /tmp/
 RUN /tmp/install_tensorrt.sh \
@@ -34,5 +37,8 @@ RUN /tmp/install_tensorrt.sh \
     "${OS_VERSION}" \
     "${TARGETARCH}" \
     && rm -rf /tmp/install_tensorrt.sh
+
+ENV http_proxy ''
+ENV https_proxy ''
 
 WORKDIR /

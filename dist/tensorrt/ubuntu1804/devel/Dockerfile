@@ -1,7 +1,7 @@
 ARG IMAGE_NAME
-ARG PACKAGE_VERSION=8.4.3.1
+ARG PACKAGE_VERSION=8.5.3.1
 ARG BASE_PACKAGE=cuda
-ARG BASE_PACKAGE_VERSION=11.6.2
+ARG BASE_PACKAGE_VERSION=11.8.0
 ARG OS_VERSION=ubuntu18.04
 
 FROM ${IMAGE_NAME}:${BASE_PACKAGE}-${BASE_PACKAGE_VERSION}-devel-${OS_VERSION} as base
@@ -27,6 +27,9 @@ ARG OS_VERSION
 
 LABEL maintainer="Pantao Yao <pantaoyao@gmail.com>"
 
+ENV http_proxy http://192.168.20.195:7890
+ENV https_proxy http://192.168.20.195:7890
+
 # Install TensorRT
 COPY deps/install_tensorrt.sh /tmp/
 RUN /tmp/install_tensorrt.sh \
@@ -36,13 +39,16 @@ RUN /tmp/install_tensorrt.sh \
     "${TARGETARCH}" \
     && rm -rf /tmp/install_tensorrt.sh
 
-# Install PyPI packages
-COPY deps/requirements.txt /tmp/requirements.txt
-RUN pip3 install --upgrade pip \
-    && pip3 install "setuptools>=41.0.0" \
-    && pip3 install -r /tmp/requirements.txt \
-    && pip3 install jupyter jupyterlab \
-    && pip3 install --upgrade numpy \
-    && rm -rf /tmp/requirements.txt
+# # Install PyPI packages
+# COPY deps/requirements.txt /tmp/requirements.txt
+# RUN pip3 install --upgrade pip \
+#     && pip3 install "setuptools>=41.0.0" \
+#     && pip3 install -r /tmp/requirements.txt \
+#     && pip3 install jupyter jupyterlab \
+#     && pip3 install --upgrade numpy \
+#     && rm -rf /tmp/requirements.txt
+
+ENV http_proxy ''
+ENV https_proxy ''
 
 WORKDIR /
