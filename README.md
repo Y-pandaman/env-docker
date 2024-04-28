@@ -40,7 +40,7 @@ See `./build.sh --help` for detailed usage.
 ### Image Tags
 
 ```bash
-projectzetton/zetton-docker:<package_name>(-<package_version>)-<category>-<os_version>
+pandaman666/ubuntu:<package_name>(-<package_version>)-<category>-<os_version>
 ```
 
 - `<package_name>`:
