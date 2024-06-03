@@ -5,8 +5,8 @@ FROM ${IMAGE_NAME}:${BASE_PACKAGE}-runtime-${OS_VERSION}
 
 LABEL maintainer="Pantao Yao <pantaoyao@gmail.com>"
 
-ENV http_proxy http://192.168.20.195:7890
-ENV https_proxy http://192.168.20.195:7890
+ENV http_proxy http://192.168.10.52:7890
+ENV https_proxy http://192.168.10.52:7890
 
 # Install ROS
 ARG PACKAGE_VERSION=melodic

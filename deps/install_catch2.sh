@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 set -ex
 
 CATCH2_VERSION=${1:-v3.2.1}
