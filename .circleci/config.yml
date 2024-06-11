@@ -4,7 +4,7 @@ version: 2.1
 executors:
   docker-executor:
     docker:
-      - image: docker:26.1-cli
+      - image: docker pull pandaman666/ubuntu:vanilla-runtime-ubuntu20.04
     environment:  # 设置全局环境变量
       CCACHE_DIR: /tmp/.ccache  # 缓存目录
 
@@ -41,7 +41,7 @@ jobs:
       - run:
           name: build docker  images
           command: |
-            ./build.sh --package-name custom --package-version xict  --os ubuntu --os-version 20.04 --arch amd64,arm64 --num-threads 4 --push --image-suffix tensorrt8.5.3.1 --extra-args "--build-arg BASE_PACKAGE=tensorrt-8.5.3.1"
+            cd env-docker && ./build.sh --package-name custom --package-version xict  --os ubuntu --os-version 20.04 --arch amd64,arm64 --num-threads 4 --push --image-suffix tensorrt8.5.3.1 --extra-args "--build-arg BASE_PACKAGE=tensorrt-8.5.3.1"
       - save_cache:  # 保存缓存步骤
           key: docker-ccache
           paths:
