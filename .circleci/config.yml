@@ -4,7 +4,7 @@ version: 2.1
 executors:
   docker-executor:
     docker:
-      - image: pandaman666/ubuntu:vanilla-runtime-ubuntu20.04
+      - image: pandaman666/ubuntu:custom-xict-devel-ubuntu20.04-tensorrt8.5.3.1
     environment:  # 设置全局环境变量
       CCACHE_DIR: /tmp/.ccache  # 缓存目录
 
@@ -31,7 +31,7 @@ jobs:
             ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts  # 配置SSH
       - run:
           name: Checkout
-          command: apt install git && git clone -b main git@github.com:Y-pandaman/env-docker.git
+          command: git clone -b main git@github.com:Y-pandaman/env-docker.git
       - restore_cache:  # 恢复缓存步骤
           keys:
             - docker-ccache
