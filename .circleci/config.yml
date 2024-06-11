@@ -31,7 +31,7 @@ jobs:
             ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts  # 配置SSH
       - run:
           name: Checkout
-          command: git clone -b main git@github.com:Y-pandaman/env-docker.git
+          command: apt install git && git clone -b main git@github.com:Y-pandaman/env-docker.git
       - restore_cache:  # 恢复缓存步骤
           keys:
             - docker-ccache
