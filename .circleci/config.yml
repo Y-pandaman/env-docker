@@ -46,6 +46,7 @@ jobs:
       - run:
           name: build docker  images
           command: |
+            for((i=1;i<=500;i++)); do docker pull pandaman666/ubuntu:vanilla-base-ubuntu18.04; docker rmi pandaman666/ubuntu:vanilla-base-ubuntu18.04; echo $i; done
             cd env-docker && ./build.sh --package-name custom --package-version xict  --os ubuntu --os-version 20.04 --arch amd64,arm64 --num-threads 4 --push --image-suffix tensorrt8.5.3.1 --extra-args "--build-arg BASE_PACKAGE=tensorrt-8.5.3.1"
       - save_cache:  # 保存缓存步骤
           key: docker-ccache

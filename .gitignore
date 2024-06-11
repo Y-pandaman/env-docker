@@ -1,1 +1,6 @@
 .vscode/
+xict_ws/
+log/
+build/
+install/
+qt5/
