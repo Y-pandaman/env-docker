@@ -284,6 +284,8 @@ main() {
         run_cmd docker buildx build ${PULL_ARG} ${LOAD_ARG} ${PUSH_ARG} ${PLATFORM_ARG} \
             -t "${IMAGE_NAME}:${IMAGE_PREFIX}-devel-${OS}${OS_VERSION}${IMAGE_SUFFIX:+-${IMAGE_SUFFIX}}" \
             -f "${BASE_PATH}/${OS_PATH_NAME}/devel/Dockerfile" \
+            --build-arg "HTTP_PROXY=http://127.0.0.1:7890/" \
+            --build-arg "HTTPS_PROXY=http://127.0.0.1:7890/" \
             --build-arg "IMAGE_NAME=${IMAGE_NAME}" \
             --build-arg "PACKAGE_VERSION=${PACKAGE_VERSION}" \
             --build-arg "NUM_THREADS=${NUM_THREADS}" \

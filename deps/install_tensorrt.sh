@@ -2,8 +2,8 @@
 ###
 # @Author: 姚潘涛
 # @Date: 2024-04-12 14:05:08
-# @LastEditors: 姚潘涛
-# @LastEditTime: 2024-04-24 13:40:50
+ # @LastEditors: 姚潘涛
+ # @LastEditTime: 2024-06-11 13:44:21
 # @Description:
 #
 # Copyright (c) 2024 by pandaman, All Rights Reserved.
@@ -25,7 +25,7 @@ fi
 
 # Install requried libraries
 apt-get update && apt-get install -y --no-install-recommends software-properties-common
-add-apt-repository ppa:ubuntu-toolchain-r/test
+# add-apt-repository ppa:ubuntu-toolchain-r/test
 apt-get update && apt-get install -y --no-install-recommends \
     libcurl4-openssl-dev \
     wget \
