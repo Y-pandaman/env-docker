@@ -16,30 +16,50 @@ workflows:
   build_and_test:  # 工作流名称
     jobs:  # 工作流包含的作业
       - build  # 构建作业
+      - test:
+          requires:
+            - build
 
 # 作业定义
 jobs:
   build:  # 构建作业
-    executor: xict-executor  # 使用的执行器
-    resource_class: large  # 资源类别
-    steps:  # 作业步骤
-      - run:  # 执行命令步骤
-          name: Setup SSH  # 步骤名称
+    executor: docker-executor
+    resource_class: large
+    steps:
+      - run:
+          name: Setup SSH
           command: |
             mkdir -p ~/.ssh
             touch ~/.ssh/known_hosts
             ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts  # 配置SSH
-      - run:  # 检出代码步骤
+      - run:
           name: Checkout
           command: git clone -b main git@github.com:Y-pandaman/env-docker.git
-      - run:  # 安装ccache步骤
+      - restore_cache:  # 恢复缓存步骤
+          keys:
+            - docker-ccache
+      - run:
           name: Install docker
           command: cd env-docker && ./deps/install_docker.sh
       - run:
           name: build docker  images
           command: |
             ./build.sh --package-name custom --package-version xict  --os ubuntu --os-version 20.04 --arch amd64,arm64 --num-threads 4 --push --image-suffix tensorrt8.5.3.1 --extra-args "--build-arg BASE_PACKAGE=tensorrt-8.5.3.1"
+      - save_cache:  # 保存缓存步骤
+          key: docker-ccache
+          paths:
+            - /tmp/.ccache
       - persist_to_workspace:  # 持久化到工作空间步骤
           root: .
           paths:
             - .
+  test:
+    executor: docker-executor
+    resource_class: large
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: test docker images
+          command: |
+            echo "test docker images"
