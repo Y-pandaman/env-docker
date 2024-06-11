@@ -2,14 +2,11 @@ version: 2.1
 
 # 定义执行器配置
 executors:
-  xict-executor:
+  docker-executor:
     docker:
       - image: pandaman666/ubuntu:vanilla-devel-ubuntu20.04 # 使用的Docker镜像
     environment:  # 设置全局环境变量
       CCACHE_DIR: /tmp/.ccache  # 缓存目录
-      ROS_VERSION: humble  # ROS版本
-      LD_LIBRARY_PATH: /usr/local/lib:$LD_LIBRARY_PATH  # 库路径
-      MAKEFLAGS: "-j2"  # 编译并行度
 
 # 定义工作流
 workflows:
