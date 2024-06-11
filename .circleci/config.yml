@@ -35,9 +35,9 @@ jobs:
       - restore_cache:  # 恢复缓存步骤
           keys:
             - docker-ccache
-      - run:
-          name: Install docker
-          command: cd env-docker && ./deps/install_docker.sh
+      # - run:
+      #     name: Install docker
+      #     command: cd env-docker && ./deps/install_docker.sh
       - run:
           name: build docker  images
           command: |
