@@ -36,7 +36,7 @@ jobs:
           name: Install docker
           command: cd env-docker && ./deps/install_docker.sh
       - run:
-          name: build docker images
+          name: build docker  images
           command: |
             ./build.sh --package-name custom --package-version xict  --os ubuntu --os-version 20.04 --arch amd64,arm64 --num-threads 4 --push --image-suffix tensorrt8.5.3.1 --extra-args "--build-arg BASE_PACKAGE=tensorrt-8.5.3.1"
       - persist_to_workspace:  # 持久化到工作空间步骤
