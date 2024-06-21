@@ -28,9 +28,6 @@ jobs:
     steps:
       - setup_remote_docker:
           docker_layer_caching: true
-      - docker/check:
-          docker-username: pandaman666  # DOCKER_LOGIN is the default value, if it exists, it automatically would be used.
-          docker-password: $DOCKERHUB_PASSWORD  # DOCKER_PASSWORD is the default value
       - run:
           name: Setup SSH
           command: |
