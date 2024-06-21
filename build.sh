@@ -257,27 +257,27 @@ main() {
             --node pandaman666
     fi
 
-    # build base image
-    [ -f "${BASE_PATH}/${OS_PATH_NAME}/base/Dockerfile" ] &&
-        run_cmd docker buildx build ${PULL_ARG} ${LOAD_ARG} ${PUSH_ARG} ${PLATFORM_ARG} \
-            -t "${IMAGE_NAME}:${IMAGE_PREFIX}-base-${OS}${OS_VERSION}${IMAGE_SUFFIX:+-${IMAGE_SUFFIX}}" \
-            -f "${BASE_PATH}/${OS_PATH_NAME}/base/Dockerfile" \
-            --build-arg "IMAGE_NAME=${IMAGE_NAME}" \
-            --build-arg "PACKAGE_VERSION=${PACKAGE_VERSION}" \
-            --build-arg "NUM_THREADS=${NUM_THREADS}" \
-            ${EXTRA_ARGS} \
-            .
+    # # build base image
+    # [ -f "${BASE_PATH}/${OS_PATH_NAME}/base/Dockerfile" ] &&
+    #     run_cmd docker buildx build ${PULL_ARG} ${LOAD_ARG} ${PUSH_ARG} ${PLATFORM_ARG} \
+    #         -t "${IMAGE_NAME}:${IMAGE_PREFIX}-base-${OS}${OS_VERSION}${IMAGE_SUFFIX:+-${IMAGE_SUFFIX}}" \
+    #         -f "${BASE_PATH}/${OS_PATH_NAME}/base/Dockerfile" \
+    #         --build-arg "IMAGE_NAME=${IMAGE_NAME}" \
+    #         --build-arg "PACKAGE_VERSION=${PACKAGE_VERSION}" \
+    #         --build-arg "NUM_THREADS=${NUM_THREADS}" \
+    #         ${EXTRA_ARGS} \
+    #         .
 
-    # build runtime image
-    [ -f "${BASE_PATH}/${OS_PATH_NAME}/runtime/Dockerfile" ] &&
-        run_cmd docker buildx build ${PULL_ARG} ${LOAD_ARG} ${PUSH_ARG} ${PLATFORM_ARG} \
-            -t "${IMAGE_NAME}:${IMAGE_PREFIX}-runtime-${OS}${OS_VERSION}${IMAGE_SUFFIX:+-${IMAGE_SUFFIX}}" \
-            -f "${BASE_PATH}/${OS_PATH_NAME}/runtime/Dockerfile" \
-            --build-arg "IMAGE_NAME=${IMAGE_NAME}" \
-            --build-arg "PACKAGE_VERSION=${PACKAGE_VERSION}" \
-            --build-arg "NUM_THREADS=${NUM_THREADS}" \
-            ${EXTRA_ARGS} \
-            .
+    # # build runtime image
+    # [ -f "${BASE_PATH}/${OS_PATH_NAME}/runtime/Dockerfile" ] &&
+    #     run_cmd docker buildx build ${PULL_ARG} ${LOAD_ARG} ${PUSH_ARG} ${PLATFORM_ARG} \
+    #         -t "${IMAGE_NAME}:${IMAGE_PREFIX}-runtime-${OS}${OS_VERSION}${IMAGE_SUFFIX:+-${IMAGE_SUFFIX}}" \
+    #         -f "${BASE_PATH}/${OS_PATH_NAME}/runtime/Dockerfile" \
+    #         --build-arg "IMAGE_NAME=${IMAGE_NAME}" \
+    #         --build-arg "PACKAGE_VERSION=${PACKAGE_VERSION}" \
+    #         --build-arg "NUM_THREADS=${NUM_THREADS}" \
+    #         ${EXTRA_ARGS} \
+    #         .
 
     # build devel image
     [ -f "${BASE_PATH}/${OS_PATH_NAME}/devel/Dockerfile" ] &&

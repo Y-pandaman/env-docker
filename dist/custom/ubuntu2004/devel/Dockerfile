@@ -27,6 +27,22 @@ RUN add-apt-repository ppa:beineri/opt-qt-5.14.2-focal &&  \
     apt update && apt install -yq \
     qt514base qt514charts-no-lgpl qt514declarative  qt514quickcontrols2 qt514serialport qt514serialbus
 
+RUN export PATH="/opt/qt514/bin:$PATH" && \
+    export LD_LIBRARY_PATH="/opt/qt514/lib:$LD_LIBRARY_PATH" && \
+    export QT_PLUGIN_PATH="/opt/qt514/plugins:$QT_PLUGIN_PATH" && \
+    export QML2_IMPORT_PATH="/opt/qt514/qml:$QML2_IMPORT_PATH"
+
+RUN echo "export PATH="/opt/qt514/bin:$PATH"" >> "$HOME"/.zshrc
+RUN echo "export LD_LIBRARY_PATH="/opt/qt514/lib:$LD_LIBRARY_PATH"" >> "$HOME"/.zshrc
+RUN echo "export QT_PLUGIN_PATH="/opt/qt514/plugins:$QT_PLUGIN_PATH"" >> "$HOME"/.zshrc
+RUN echo "export QML2_IMPORT_PATH="/opt/qt514/qml:$QML2_IMPORT_PATH"" >> "$HOME"/.zshrc
+
+#Install visp
+RUN git clone https://github.com/lagadic/visp.git && \
+    cd visp && mkdir build && cd build && \
+    cmake -DUSE_CXX_STANDARD=14 .. && \
+    make -j4 && make install
+
 # Install extra dependencies
 RUN apt update && apt install \
     ccache \
