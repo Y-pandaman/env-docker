@@ -35,18 +35,12 @@ jobs:
       - restore_cache:  # 恢复缓存步骤
           keys:
             - docker-ccache
-      - run:
-          name: Install docker
-          command: |
-            apt-get update && apt-get install ca-certificates curl && install -m 0755 -d /etc/apt/keyrings && curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && chmod a+r /etc/apt/keyrings/docker.asc
-            echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
-            apt-get update
-            apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
-            systemctl daemon-reload && systemctl restart docker
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: build docker  images
           command: |
-            for((i=1;i<=500;i++)); do docker pull pandaman666/ubuntu:vanilla-base-ubuntu18.04; docker rmi pandaman666/ubuntu:vanilla-base-ubuntu18.04; echo $i; done
+            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
             cd env-docker && ./build.sh --package-name custom --package-version xict  --os ubuntu --os-version 20.04 --arch amd64,arm64 --num-threads 4 --push --image-suffix tensorrt8.5.3.1 --extra-args "--build-arg BASE_PACKAGE=tensorrt-8.5.3.1"
       - save_cache:  # 保存缓存步骤
           key: docker-ccache

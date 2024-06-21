@@ -22,8 +22,13 @@ RUN  add-apt-repository ppa:ecal/ecal-latest && \
 # Install colcon
 RUN pip install -U colcon-common-extensions -i https://mirrors.aliyun.com/pypi/simple
 
+#Install qt
+RUN add-apt-repository ppa:beineri/opt-qt-5.14.2-focal &&  \
+    apt update && apt install -yq \
+    qt514base qt514charts-no-lgpl qt514declarative  qt514quickcontrols2 qt514serialport qt514serialbus
+
 # Install extra dependencies
-RUN apt update && apt install qtcreator \
+RUN apt update && apt install \
     ccache \
     libassimp-dev \
     libeigen3-dev \
