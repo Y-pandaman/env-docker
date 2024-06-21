@@ -37,6 +37,13 @@ RUN echo "export LD_LIBRARY_PATH="/opt/qt514/lib:$LD_LIBRARY_PATH"" >> "$HOME"/.
 RUN echo "export QT_PLUGIN_PATH="/opt/qt514/plugins:$QT_PLUGIN_PATH"" >> "$HOME"/.zshrc
 RUN echo "export QML2_IMPORT_PATH="/opt/qt514/qml:$QML2_IMPORT_PATH"" >> "$HOME"/.zshrc
 
+#Install OpenCV
+ARG OPENCV_VERSION=4.5.2
+ARG OPENCV_CUDA_ARCH=6.1
+COPY deps/install_opencv.sh /tmp/
+RUN /tmp/install_opencv.sh "${OPENCV_VERSION}" "${OPENCV_CUDA_ARCH}" "${NUM_THREADS}" \
+    && rm -rf /tmp/install_opencv.sh
+
 #Install visp
 RUN git clone https://github.com/lagadic/visp.git && \
     cd visp && mkdir build && cd build && \

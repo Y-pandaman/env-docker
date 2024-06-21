@@ -91,6 +91,9 @@ apt-get install -y --no-install-recommends \
 #   build-essential \
 #   gfortran
 
+apt remove libopencv-viz-dev -y
+apt autoremove -y
+
 cd /tmp || exit &&
   wget --no-check-certificate https://github.com/opencv/opencv/archive/"${OPENCV_VERSION}".zip -O opencv.zip &&
   unzip opencv.zip &&
