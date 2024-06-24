@@ -4,8 +4,8 @@ FROM nvidia/cuda:${PACKAGE_VERSION}-devel-${OS_VERSION}
 
 LABEL maintainer="Pantao Yao <pantaoyao@gmail.com>"
 
-ENV http_proxy http://192.168.20.195:7890
-ENV https_proxy http://192.168.20.195:7890
+# ENV http_proxy http://192.168.20.195:7890
+# ENV https_proxy http://192.168.20.195:7890
 
 ENV LANG C.UTF-8
 ENV LC_ALL C.UTF-8
