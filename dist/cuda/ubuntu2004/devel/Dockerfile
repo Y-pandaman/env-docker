@@ -49,7 +49,7 @@ RUN /tmp/install_catch2.sh \
     "${NUM_THREADS}"
 
 # Install OpenCV
-RUN apt install -yq libvtk7-dev
+RUN apt update && apt install -yq libvtk7-dev
 ARG OPENCV_VERSION=4.5.2
 ARG OPENCV_CUDA_ARCH=6.1
 COPY deps/install_opencv.sh /tmp/
