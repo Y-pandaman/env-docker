@@ -52,10 +52,9 @@ RUN git clone https://github.com/lagadic/visp.git && \
     make -j4 && make install
 
 # Install extra dependencies
-RUN apt update && apt install \
+RUN apt update && apt install -yq \
     ccache \
     libassimp-dev \
     libeigen3-dev \
     libboost-all-dev \
-    libyaml-cpp-dev \
-    -y
+    libyaml-cpp-dev
