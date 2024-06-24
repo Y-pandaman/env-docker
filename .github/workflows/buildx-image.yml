@@ -1,0 +1,44 @@
+name: ci
+
+on:
+  push:
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ vars.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: user/app:latest
+
+      - name: Setup ssh
+        run: |
+          mkdir -p ~/.ssh
+          touch ~/.ssh/known_hosts
+          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+
+      - name: Clone code
+        run: |
+          git clone -b main git@github.com:Y-pandaman/env-docker.git
+
+      - name: Build and push
+        run: |
+          cd env-docker
+          # ./build.sh --package-name custom --package-version xict  --os ubuntu --os-version 20.04 --arch amd64 --num-threads 8 --push --image-suffix tensorrt8.5.3.1 --extra-args "--build-arg BASE_PACKAGE=tensorrt-8.5.3.1"
+          # ./build.sh --package-name tensorrt --package-version 8.5.3.1 --os ubuntu --os-version 20.04 --num-threads 8 --arch amd64 --push --extra-args "--build-arg BASE_PACKAGE_VERSION=11.8.0"
+          ./build.sh --package-name cuda --package-version 11.8.0 --os ubuntu --os-version 20.04 --num-threads 8 --arch amd64,arm64 --push
