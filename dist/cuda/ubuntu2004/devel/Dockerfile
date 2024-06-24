@@ -41,7 +41,15 @@ COPY deps/install_cmake.sh /tmp/
 RUN /tmp/install_cmake.sh "${CMAKE_VERSION}" "${NUM_THREADS}" \
     && rm -rf /tmp/install_cmake.sh
 
+# Install catch2
+ARG CATCH2_VERSION="v3.2.1"
+COPY deps/install_catch2.sh /tmp/
+RUN /tmp/install_catch2.sh \
+    "${CATCH2_VERSION}" \
+    "${NUM_THREADS}"
+
 # Install OpenCV
+RUN apt install -yq libvtk7-dev
 ARG OPENCV_VERSION=4.5.2
 ARG OPENCV_CUDA_ARCH=6.1
 COPY deps/install_opencv.sh /tmp/
@@ -88,6 +96,6 @@ ENV https_proxy ''
 
 # Setup dotfiles
 COPY conf/.zshrc /root/
-COPY conf/.tmux.conf /root/
+# COPY conf/.tmux.conf /root/
 
 ENTRYPOINT service ssh restart && zsh
