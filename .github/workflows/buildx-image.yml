@@ -19,15 +19,9 @@ jobs:
           username: ${{ vars.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Setup ssh
-        run: |
-          mkdir -p ~/.ssh
-          touch ~/.ssh/known_hosts
-          ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-
       - name: Clone code
         run: |
-          git clone -b main git@github.com:Y-pandaman/env-docker.git
+          git clone -b main https://github.com/Y-pandaman/env-docker.git
 
       - name: Build and push
         run: |
