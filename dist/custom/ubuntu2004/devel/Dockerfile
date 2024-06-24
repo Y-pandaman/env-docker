@@ -38,6 +38,7 @@ RUN echo "export QT_PLUGIN_PATH="/opt/qt514/plugins:$QT_PLUGIN_PATH"" >> "$HOME"
 RUN echo "export QML2_IMPORT_PATH="/opt/qt514/qml:$QML2_IMPORT_PATH"" >> "$HOME"/.zshrc
 
 #Install OpenCV
+RUN apt install libvtk7-dev -y
 ARG OPENCV_VERSION=4.5.2
 ARG OPENCV_CUDA_ARCH=6.1
 COPY deps/install_opencv.sh /tmp/
