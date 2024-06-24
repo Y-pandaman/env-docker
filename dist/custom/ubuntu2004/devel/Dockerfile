@@ -39,11 +39,11 @@ RUN echo "export QML2_IMPORT_PATH="/opt/qt514/qml:$QML2_IMPORT_PATH"" >> "$HOME"
 
 #Install OpenCV
 RUN apt install -yq libvtk7-dev
-# ARG OPENCV_VERSION=4.5.2
-# ARG OPENCV_CUDA_ARCH=6.1
-# COPY deps/install_opencv.sh /tmp/
-# RUN /tmp/install_opencv.sh "${OPENCV_VERSION}" "${OPENCV_CUDA_ARCH}" "${NUM_THREADS}" \
-#     && rm -rf /tmp/install_opencv.sh
+ARG OPENCV_VERSION=4.5.2
+ARG OPENCV_CUDA_ARCH=6.1
+COPY deps/install_opencv.sh /tmp/
+RUN /tmp/install_opencv.sh "${OPENCV_VERSION}" "${OPENCV_CUDA_ARCH}" "${NUM_THREADS}" \
+    && rm -rf /tmp/install_opencv.sh
 
 #Install visp
 RUN git clone https://github.com/lagadic/visp.git && \
