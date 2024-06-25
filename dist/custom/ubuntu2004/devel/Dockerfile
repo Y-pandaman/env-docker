@@ -5,14 +5,14 @@ FROM ${IMAGE_NAME}:${BASE_PACKAGE}-devel-${OS_VERSION}
 
 LABEL maintainer="Pantao Yao <pantaoyao@gmail.com>"
 
-ARG NUM_THREADS=1
+ARG NUM_THREADS=4
 
 # Install catch2
-ARG CATCH2_VERSION="v3.2.1"
-COPY deps/install_catch2.sh /tmp/
-RUN /tmp/install_catch2.sh \
-    "${CATCH2_VERSION}" \
-    "${NUM_THREADS}"
+# ARG CATCH2_VERSION="v3.2.1"
+# COPY deps/install_catch2.sh /tmp/
+# RUN /tmp/install_catch2.sh \
+#     "${CATCH2_VERSION}" \
+#     "${NUM_THREADS}"
 
 # Install ecal
 RUN  add-apt-repository ppa:ecal/ecal-latest && \
@@ -38,12 +38,12 @@ RUN echo "export QT_PLUGIN_PATH="/opt/qt514/plugins:$QT_PLUGIN_PATH"" >> "$HOME"
 RUN echo "export QML2_IMPORT_PATH="/opt/qt514/qml:$QML2_IMPORT_PATH"" >> "$HOME"/.zshrc
 
 #Install OpenCV
-RUN apt install -yq libvtk7-dev
-ARG OPENCV_VERSION=4.5.2
-ARG OPENCV_CUDA_ARCH=6.1
-COPY deps/install_opencv.sh /tmp/
-RUN /tmp/install_opencv.sh "${OPENCV_VERSION}" "${OPENCV_CUDA_ARCH}" "${NUM_THREADS}" \
-    && rm -rf /tmp/install_opencv.sh
+# RUN apt install -yq libvtk7-dev
+# ARG OPENCV_VERSION=4.5.2
+# ARG OPENCV_CUDA_ARCH=6.1
+# COPY deps/install_opencv.sh /tmp/
+# RUN /tmp/install_opencv.sh "${OPENCV_VERSION}" "${OPENCV_CUDA_ARCH}" "${NUM_THREADS}" \
+#     && rm -rf /tmp/install_opencv.sh
 
 #Install visp
 RUN git clone https://github.com/lagadic/visp.git && \

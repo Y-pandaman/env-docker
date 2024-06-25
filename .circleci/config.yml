@@ -46,8 +46,8 @@ jobs:
             # docker login -u pandaman666 -p $DOCKERHUB_PASSWORD
             echo $DOCKERHUB_PASSWORD | docker login -u pandaman666 --password-stdin
             cd env-docker
-            # ./build.sh --package-name custom --package-version xict  --os ubuntu --os-version 20.04 --arch amd64 --num-threads 4 --push --image-suffix tensorrt8.5.3.1 --extra-args "--build-arg BASE_PACKAGE=tensorrt-8.5.3.1"
-            ./build.sh --package-name tensorrt --package-version 8.5.3.1 --os ubuntu --os-version 20.04 --arch amd64 --push --extra-args "--build-arg BASE_PACKAGE_VERSION=11.8.0"
+            ./build.sh --package-name custom --package-version xict  --os ubuntu --os-version 20.04 --arch amd64 --num-threads 4 --push --image-suffix tensorrt8.5.3.1 --extra-args "--build-arg BASE_PACKAGE=tensorrt-8.5.3.1"
+            # ./build.sh --package-name tensorrt --package-version 8.5.3.1 --os ubuntu --os-version 20.04 --arch amd64 --push --extra-args "--build-arg BASE_PACKAGE_VERSION=11.8.0"
             # ./build.sh --package-name cuda --package-version 11.8.0 --os ubuntu --os-version 20.04 --num-threads 4 --arch amd64 --push
       - save_cache:  # 保存缓存步骤
           key: docker-ccache
