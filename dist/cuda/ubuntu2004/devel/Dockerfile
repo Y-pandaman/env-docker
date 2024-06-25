@@ -36,7 +36,7 @@ RUN apt-get update \
 ARG NUM_THREADS=1
 
 # Install CMake
-ARG CMAKE_VERSION=3.27.8
+ARG CMAKE_VERSION=3.19.2
 COPY deps/install_cmake.sh /tmp/
 RUN /tmp/install_cmake.sh "${CMAKE_VERSION}" "${NUM_THREADS}" \
     && rm -rf /tmp/install_cmake.sh
