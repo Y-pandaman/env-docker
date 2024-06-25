@@ -21,6 +21,7 @@ jobs:
 
       - name: Clone code
         run: |
+          nproc
           git clone -b main https://github.com/Y-pandaman/env-docker.git
 
       - name: Build and push
