@@ -6,8 +6,8 @@ ARG OS_VERSION=ubuntu20.04
 
 FROM ${IMAGE_NAME}:${BASE_PACKAGE}-${BASE_PACKAGE_VERSION}-devel-${OS_VERSION} as base
 
-ENV http_proxy http://192.168.20.195:7890
-ENV https_proxy http://192.168.20.195:7890
+# ENV http_proxy http://192.168.20.195:7890
+# ENV https_proxy http://192.168.20.195:7890
 
 FROM base as base-amd64
 # Set environment and working directory
@@ -48,7 +48,7 @@ RUN pip3 install --upgrade pip \
     && pip3 install --upgrade numpy \
     && rm -rf /tmp/requirements.txt
 
-ENV http_proxy ''
-ENV https_proxy ''
+# ENV http_proxy ''
+# ENV https_proxy ''
 
 WORKDIR /
