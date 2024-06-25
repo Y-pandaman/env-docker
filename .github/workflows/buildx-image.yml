@@ -29,4 +29,4 @@ jobs:
           cd env-docker
           # ./build.sh --package-name custom --package-version xict  --os ubuntu --os-version 20.04 --arch amd64 --num-threads 8 --push --image-suffix tensorrt8.5.3.1 --extra-args "--build-arg BASE_PACKAGE=tensorrt-8.5.3.1"
           # ./build.sh --package-name tensorrt --package-version 8.5.3.1 --os ubuntu --os-version 20.04 --num-threads 8 --arch amd64 --push --extra-args "--build-arg BASE_PACKAGE_VERSION=11.8.0"
-          ./build.sh --package-name cuda --package-version 11.8.0 --os ubuntu --os-version 20.04 --num-threads 8 --arch amd64,arm64 --push
+          ./build.sh --package-name cuda --package-version 11.8.0 --os ubuntu --os-version 20.04 --num-threads 16 --arch amd64,arm64 --push
