@@ -40,13 +40,13 @@ RUN /tmp/install_tensorrt.sh \
     && rm -rf /tmp/install_tensorrt.sh
 
 # Install PyPI packages
-# COPY deps/requirements.txt /tmp/requirements.txt
-# RUN pip3 install --upgrade pip \
-#     && pip3 install "setuptools>=41.0.0" \
-#     && pip3 install -r /tmp/requirements.txt -i https://mirrors.aliyun.com/pypi/simple \
-#     && pip3 install jupyter jupyterlab \
-#     && pip3 install --upgrade numpy \
-#     && rm -rf /tmp/requirements.txt
+COPY deps/requirements.txt /tmp/requirements.txt
+RUN pip3 install --upgrade pip \
+    && pip3 install "setuptools>=41.0.0" \
+    && pip3 install -r /tmp/requirements.txt -i https://mirrors.aliyun.com/pypi/simple \
+    && pip3 install jupyter jupyterlab \
+    && pip3 install --upgrade numpy \
+    && rm -rf /tmp/requirements.txt
 
 # ENV http_proxy ''
 # ENV https_proxy ''
