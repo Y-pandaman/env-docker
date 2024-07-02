@@ -14,7 +14,7 @@ ENV LC_ALL C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Enable repository mirrors for China
-ARG USE_MIRROR="true"
+ARG USE_MIRROR="false"
 COPY deps/setup_apt_mirror.sh /tmp/
 RUN /tmp/setup_apt_mirror.sh "${USE_MIRROR}" \
     && rm -rf /tmp/setup_apt_mirror.sh
