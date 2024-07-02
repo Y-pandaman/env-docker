@@ -48,25 +48,25 @@ RUN /tmp/install_catch2.sh \
     "${CATCH2_VERSION}" \
     "${NUM_THREADS}"
 
-# Install OpenCV
-RUN apt update && apt install -yq libvtk7-dev
-ARG OPENCV_VERSION=4.5.2
-ARG OPENCV_CUDA_ARCH=6.1
-COPY deps/install_opencv.sh /tmp/
-RUN /tmp/install_opencv.sh "${OPENCV_VERSION}" "${OPENCV_CUDA_ARCH}" "${NUM_THREADS}" \
-    && rm -rf /tmp/install_opencv.sh
+# # Install OpenCV
+# RUN apt update && apt install -yq libvtk7-dev
+# ARG OPENCV_VERSION=4.5.2
+# ARG OPENCV_CUDA_ARCH=6.1
+# COPY deps/install_opencv.sh /tmp/
+# RUN /tmp/install_opencv.sh "${OPENCV_VERSION}" "${OPENCV_CUDA_ARCH}" "${NUM_THREADS}" \
+#     && rm -rf /tmp/install_opencv.sh
 
-# Install fmt from source
-ARG FMT_VERSION=9.0.0
-COPY deps/install_fmt.sh /tmp/
-RUN /tmp/install_fmt.sh "${FMT_VERSION}" "${NUM_THREADS}" \
-    && rm -rf /tmp/install_fmt.sh
+# # Install fmt from source
+# ARG FMT_VERSION=9.0.0
+# COPY deps/install_fmt.sh /tmp/
+# RUN /tmp/install_fmt.sh "${FMT_VERSION}" "${NUM_THREADS}" \
+#     && rm -rf /tmp/install_fmt.sh
 
-# Install absl from source
-ARG ABSL_VERSION=lts_2022_06_23
-COPY deps/install_absl.sh /tmp/
-RUN /tmp/install_absl.sh "${ABSL_VERSION}" "${NUM_THREADS}" \
-    && rm -rf /tmp/install_absl.sh
+# # Install absl from source
+# ARG ABSL_VERSION=lts_2022_06_23
+# COPY deps/install_absl.sh /tmp/
+# RUN /tmp/install_absl.sh "${ABSL_VERSION}" "${NUM_THREADS}" \
+#     && rm -rf /tmp/install_absl.sh
 
 # Setup dotfiles
 COPY conf/.bashrc.custom /root/
