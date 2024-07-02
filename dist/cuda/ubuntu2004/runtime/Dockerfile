@@ -63,4 +63,4 @@ RUN echo "source ~/.bashrc.custom" >> "$HOME"/.bashrc
 
 ENV PATH "${PATH}:/usr/local/bin"
 ENV LD_LIBRARY_PATH "${LD_LIBRARY_PATH}:/usr/local/lib:/usr/lib"
-ENV PYTHONPATH "${PYTHONPATH}:/usr/local/lib/python3.6/site-packages"
+ENV PYTHONPATH "${PYTHONPATH}:/usr/local/lib/python3.8/site-packages"

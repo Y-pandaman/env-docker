@@ -91,8 +91,8 @@ COPY deps/setup_dev_tools.sh /tmp/
 RUN /tmp/setup_dev_tools.sh \
     && rm -rf /tmp/setup_dev_tools.sh
 
-ENV http_proxy ''
-ENV https_proxy ''
+# ENV http_proxy ''
+# ENV https_proxy ''
 
 # Setup dotfiles
 COPY conf/.zshrc /root/
